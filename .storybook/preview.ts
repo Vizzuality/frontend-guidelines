@@ -7,7 +7,13 @@ const preview: Preview = {
         storySort: {
             order: [
                 'project-setup',
-                ['Node versioning', 'dependencies', 'nextJS', 'gitignore'],
+                [
+                  'Node versioning',
+                  'Managing dependencies',
+                  'nextjs',
+                  ['Getting Started', 'Environmental Variables', 'Authentication'],
+                  'gitignore'
+                ],
                 'libraries',
                 'code-qa',
                 'libraries',

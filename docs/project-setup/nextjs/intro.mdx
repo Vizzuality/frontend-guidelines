@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="project-setup/nextjs/Getting Started" />
+
+# The Framework: NextJS
+
+_The goal of this guideline is to provide a quick overview of the NextJS framework and how to start working on a project from scratch with it.
+To look into the details of the framework, please refer to the [official documentation](https://nextjs.org/docs)._
+
+[NextJS](https://nextjs.org/) is a [React](https://react.dev/) framework and our preferred option for building web applications.
+The NextJS team provides a quick way to start a project from scratch via [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app),
+a CLI tool to scaffold a NextJS project ready to run.
+
+## Styling the application
+
+During the setup of the project, you will be prompted to use [`tailwindcss`](https://tailwindcss.com/docs/installation) as CSS framework. This is our preffered choice as well.
+The setup will take of eveything to have it up and ready to use, but the developer has to go to the `tailwind.config.js` file and customize
+the theme according to the project needs.
+
+The designer of your project should provide these colors along with other styles in the UI Kit hosted in Figma. Make sure those colors follow
+[tailwind's naming convention](https://tailwindcss.com/docs/customizing-colors) so you can easily apply them to the theme.
+
+**IMPORTANT NOTE**: if you plan to use `shadcn-ui`, make sure you install it before modyfing the `tailwind.config.js` file.
+Why? `shadcn-ui` will override your configuration file with its own, so you will have to re-apply your changes later again.
+
+When using `tailwindcss` in your project, there are two tools strongly recommended that will improve your DX:
+
+- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+- [Tailwind CSS prettier plugin](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier)
