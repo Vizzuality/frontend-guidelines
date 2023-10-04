@@ -1,0 +1,35 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="project-setup/Node versioning" />
+
+# Node versioning
+
+Our current stack relies heavily on a Javascript runtime named [Node](https://nodejs.org/en/about). You can think of it as the most important *dependency* of the project. 
+Like any other dependency, it releases new versions from time to time. That is why it is important to handle correctly the versioning of Node in our project: 
+to ensure any developer is running the same version of Node as us, and avoid any problems installing dependencies / running the framework.
+
+To achieve this goal, we use [NVM](https://github.com/nvm-sh/nvm). NVM is a tool that allows us to install and manage multiple versions of Node on our machine, 
+specifying which version we want to use for in the project through its `.nvmrc` configuration file. 
+
+In this file, we will define only the version the project wil use. NVM will then take care of installing the correct version of Node on our machine, after runing `nvm use`.
+
+You can see an example of a `.nvmrc` file below:
+
+```bash
+// .nvmrc
+18.18
+```
+
+## What Node version should I set for a new project?
+
+As a rule of thumb, you should always use the LTS (Long Term Support) version of Node. You can find the latest LTS version [here](https://nodejs.org/en/about/releases/). Or, if you prefer the CLI, just type `nvm ls-remote --lts`.
+
+## Shell Integration
+
+At this point, you might notice typing `nvm use` every time you open a new terminal can be a bit annoying (and you will probably forget most of the times). NVM's maintainer [offers an integration](https://github.com/nvm-sh/nvm?tab=readme-ov-file#deeper-shell-integration) to deal with that:
+this integration will trigger every time you change directoy and will look for a `.nvmrc` file. If it finds one, it will automatically switch to the Node version specified in the file.
+
+## Your default Node version
+
+NVM also offers a way to default to a specific Node version so you always have Node available even if you are in a directory without a `.nvmrc` file. You can do that by typing `nvm alias default <version>`.
+You can find more information about it in [their documentation](https://github.com/nvm-sh/nvm?tab=readme-ov-file#set-default-node-version).
