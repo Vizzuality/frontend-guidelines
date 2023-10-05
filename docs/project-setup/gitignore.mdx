@@ -1,3 +1,19 @@
 import { Meta } from "@storybook/blocks";
 
 <Meta title="project-setup/.gitignore" />
+
+# .gitignore
+
+By default, after running `create-next-app`, you will have a `.gitignore` file at root level. The content will cover
+the use of the framework and some standard folders.
+
+Eventually, you will be installing more dependencies that might generate files that you don't want to commit: `/storybook-static` for `storybook`,
+`/playwright-report` for `playwright`, etc.
+
+As a thumb rule, **any file/folder that is generated as a result of running a command should be ignored**.
+
+## The Yarn case
+
+`yarn` >= 1 will generate a `.yarn` folder at root level where it will store the cache and the state of the project, a binary, among others. I you followed
+the instructions [setting the correct version of Yarn](/docs/project-setup-managing-dependencies--docs#making-sure-we-install-the-correct-package-manager-version-corepack)
+you should be safe ignoring completely the `.yarn` folder.

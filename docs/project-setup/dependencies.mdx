@@ -55,3 +55,15 @@ corepack enable && corepack prepare
 Once the command finishes, you will be able to use the package manager as usual.
 
 Tip: type `{yarn|pnpm|npm} -v` to check the version installed is the expected one.
+
+## node_modules vs Plug'n'Play
+
+By default, if you are using `yarn` >=1, the default installation of dependencies will be following the [`Plug'n'Play`](https://yarnpkg.com/features/pnp) strategy. Without digging too much into details,
+we have had several issues with this approach, so we recommend change it to `node_modules`. To do that, create a `.yarnrc.yml` file in the root of your project with the following content:
+
+```yaml
+// .yarnrc.yml
+nodeLinker: node-modules
+```
+
+After that, install the dependencies again and you will see that the `node_modules` folder will be created.
