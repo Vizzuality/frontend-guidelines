@@ -1,0 +1,22 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="libraries/ui/react-icons" />
+
+# `react-icons`
+
+[`react-icons`](https://react-icons.github.io/react-icons/) is a library that gather together several of most the used icon libraries. It is our recommended
+way to handle icons in our projects. There are two main reasons to use it:
+
+- It ensures your designer and you are aligned in terms of which should be used,
+- it avoids adding `webpack` loaders to our `next.config.js` file, making future upgrades easier to handle.
+
+We are aware there might be some cases that this library does not cover, like custom icons. Whenever possible, talk with the designer
+to see if it is possible to stick with the icons provided by `react-icons`. Otherwise, you will need to add a
+new loader to `next.config.js` as we already do in some of [our projects](https://github.com/Vizzuality/foodscapes/blob/develop/client/next.config.mjs#L34-L58).
+
+> **Note**: both approaches (the library and the `webpack` loaders) can live together in the project, so our recommendation is to implement as many icons as
+> you can with the library, and only use the loaders for the custom ones. This will be make the project easier to maintain in the future.
+
+> **Tip**: when looking at the UI kit for the icons, ang get back to `react-icons`'site to see the name of the icon you want to use,
+> you will notice you will spend a lot of time looking for the right one. To make it easier, talk with your designer to see if it is
+> possible to add the icon's name in the UI kit, so you just need to copy and import it in your code without having to look for it in their site.
