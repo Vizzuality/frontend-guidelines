@@ -2,7 +2,19 @@ import { Meta } from "@storybook/blocks";
 
 <Meta title="project-setup/Environment variables" />
 
-# T3 Env
+# Environment variables
+
+Without getting into details (you can read more about it [here](https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables)), we follow the NextJS approach to handle our environmental variables.
+Meaning we can use valid files like `.env.development`, `.env.production` and `.env.local` to define our variables.
+
+> It is a good practice keep your non-secret variables in a `.env.development` file and commit it, instead of creating a `.env.default` (which servers the same purpose but it is not valid, just informative).
+> Your `.env.development` file will be loaded along with your `.env.local` file, keeping at minimum the environmental variables you need to run your app locally.
+
+Also, when creating new environmental variables do not forget to **document their purpose**. You can do this in the own `.env.development` file, or in the `README.md` file.
+
+Finally, if you are dealing with a sensitive environmental variable (like a token), do not forget to add it to the software the company is using to handle this kind of sensitive information.
+
+## T3 Env: bringing type safety to your environment variables
 
 Forgetting environment variables during build can be a hassle and difficult to debug if a bug is caused by a missing environment variable. This package provides a simple way to define environment variables validation for your app.
 
@@ -13,4 +25,3 @@ Check out the [docs](https://env.t3.gg/docs/nextjs)
 > ### Important note
 >
 > You need to rename you `next.config.js` to `next.config.mjs` for this to work
-
