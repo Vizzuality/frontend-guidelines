@@ -13,6 +13,7 @@ const preview: Preview = {
                   'Managing dependencies',
                   'Getting Started',
                   'Code QA',
+                  'Environment variables',
                   'gitignore'
                 ],
                 'libraries',
