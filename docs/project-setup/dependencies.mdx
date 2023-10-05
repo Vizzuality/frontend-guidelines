@@ -1,5 +1,57 @@
-import { Meta } from '@storybook/blocks';
+import { Meta } from "@storybook/blocks";
 
 <Meta title="project-setup/Managing dependencies" />
 
 # Managing dependencies
+
+After [installing the Node version](/docs/project-setup-node-versioning--docs) of your project, it is time to handle the dependencies will help
+you to build the project. For this purpose, we will use a _package manager_.
+
+A package manager is a tool that will let you install/upgrade/remove dependencies and run scripts in your project with ease. As of date, there are several managers available:
+
+- [Yarn](https://yarnpkg.com/getting-started)
+- [pnpm](https://pnpm.io/installation)
+- [NPM](https://www.npmjs.com/)
+
+The most used in our projects is [Yarn](https://yarnpkg.com/getting-started).
+
+## `package.json` / `*.lock`
+
+The `package.json` is a file that contains all the information about your project, including the dependencies you are using and scripts used in the project.
+It is also the file that will be used by the package manager to install the dependencies.
+
+Among the properties the properties available in the `package.json`, you will find `packageManager`. This property is filled with the following format: `name@{version}`, where `name` is
+the official name package manager and the version we want to install. **This field is important as it will tell the own package manager which version should be using.** It is also used by pipelines
+(like Vercel) to known what package manager (and version) should use to install the dependencies of your project.
+
+The `*.lock` file (`yarn.lock`, if you are using Yarn) is a file that contains a summary of your installed dependencies and how they should be resolved.
+**It is mandatory to commit this file** (do not add it to the `.gitignore` file) and do not touch it manually. The package manager will take care of it.
+
+## Versioning your dependencies
+
+When you install a dependency, by default, it will be installed with a _caret_ (`^`) in front of the version. This means that if in the future the dependency releases a new minor (not major though) version,
+the package manager will automatically upgrade it. This is a good thing, but it can also be a problem if you are not aware of it: there is no guarantee this new version may break things in your project.
+
+Usually, library maintainers follow [semantic versioning](https://semver.org/), which means that a new minor version will not break things, but it is not always the case. For this reason, we recommend you to
+pin (fix) the version of your dependencies. This way, you will be sure that the version you are using will not change unless you explicitly change it. To achieve this, you can use the `--exact/-E` flag when installing
+your dependencies (**note**: this might not apply to all package managers, check their documentation).
+
+```bash
+yarn add -E react@16.13.1 // will pin the exact version explicited
+yarn add -E next // will pin the latest version of the dependency
+```
+
+## Making sure we install the correct package manager version: corepack
+
+As of Node >= 16, there is a tool to help package managers to communicate with Node: `corepack`. This tool, in experimental state, has to be enabled in order to use package managers
+like Yarn and pnpm with latest versions as they are based on the tool. To enable just type the following in a Node enviroment:
+
+```bash
+corepack enable && corepack prepare
+```
+
+**Note**: the command will look into your `package.json` for the `packageManager` property and will install the version specified there. If you do not have this property, the command will fail.
+
+Once the command finishes, you will be able to use the package manager as usual.
+
+Tip: type `{yarn|pnpm|npm} -v` to check the version installed is the expected one.

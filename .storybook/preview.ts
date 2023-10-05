@@ -6,16 +6,15 @@ const preview: Preview = {
     options: {
         storySort: {
             order: [
+                'Welcome',
                 'project-setup',
                 [
                   'Node versioning',
                   'Managing dependencies',
-                  'nextjs',
-                  ['Getting Started', 'Environmental Variables', 'Authentication'],
+                  'Getting Started',
+                  'Code QA',
                   'gitignore'
                 ],
-                'libraries',
-                'code-qa',
                 'libraries',
                 'automatization',
                 'testing',

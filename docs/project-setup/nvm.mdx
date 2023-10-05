@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/blocks';
+import { Meta } from "@storybook/blocks";
 
 <Meta title="project-setup/Node versioning" />
 
@@ -33,3 +33,5 @@ this integration will trigger every time you change directoy and will look for a
 
 NVM also offers a way to default to a specific Node version so you always have Node available even if you are in a directory without a `.nvmrc` file. You can do that by typing `nvm alias default <version>`.
 You can find more information about it in [their documentation](https://github.com/nvm-sh/nvm?tab=readme-ov-file#set-default-node-version).
+
+Note: this approach does **not replace the `.nvmrc` file**. This is just a way to have a default Node version in case you are in a directory without a `.nvmrc` file.
