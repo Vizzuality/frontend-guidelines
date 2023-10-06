@@ -13,3 +13,54 @@ To get started with React Map GL, you can check out the official [documentation]
 ## Usage
 - [Components](https://github.com/Vizzuality/cms-scaffold/tree/main/client/src/components/map)
 - [Implementation](https://github.com/Vizzuality/cms-scaffold/tree/main/client/src/containers/home/map)
+
+## Tips
+### Layer order
+
+In Mapbox, the order of layers is important because it determines how they are rendered on the map. Layers are rendered in the order in which they are added to the map, with the last layer added being rendered on top of all other layers. This means that if you want a layer to be visible on top of another layer, you need to add it after the other layer. You can also use the `beforeId` property to specify the ID of the layer that the new layer should be rendered before. This allows you to insert a layer at a specific position in the layer stack.
+
+The problem is that sometimes the before layer is not rendered at the moment you add a layer. To solve this problem, you can add a background layer with the same ID as the layer you want to add before. This will ensure that the layer is rendered before the layer you want to add before.
+
+```tsx
+// LayerManager.tsx
+import { Layer } from 'react-map-gl';
+import { LayerManagerItem } from './item';
+
+<>
+  {/*
+    Loop through active layers to generate non visible backgrounds. By doing this, we will be able to sort by layers without an error because of the missing layer.
+    - https://github.com/visgl/react-map-gl/issues/939#issuecomment-625290200
+  */}
+  {layers.map((l, i) => {
+    const beforeId = i === 0 ? 'custom-layers' : `${layers[i - 1]}-layer`;
+    return (
+      <Layer
+        id={`${l}-layer`}
+        key={l}
+        type="background"
+        layout={{ visibility: 'none' }}
+        beforeId={beforeId}
+      />
+    );
+  })}
+
+  {/*
+    Loop through active layers. The id is gonna be used to fetch the current layer and know how to order the layers.
+    The first item will always be at the top of the layers stack
+  */}
+  {layers.map((l, i) => {
+    const beforeId = i === 0 ? 'custom-layers' : `${layers[i - 1]}-layer`;
+    return (
+      <LayerManagerItem
+        key={l}
+        id={l}
+        beforeId={beforeId}
+        settings={layersSettings[l] ?? { opacity: 1, visibility: true, expand: true }}
+      />
+    );
+  })}
+</>
+```
+
+### Deck gl overlay
+When you need to add a deck gl layer, you have several ways to add it to the map. One of the most useful way is to use the `MapboxOverlay` because it has the ability of adding layers interleaved. This means that you can add a deck gl layer between mapbox layers.
