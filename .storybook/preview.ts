@@ -17,6 +17,7 @@ const preview: Preview = {
                   'gitignore'
                 ],
                 'libraries',
+                ['*', 'ui',[ 'TailwindCSS', 'shadcn-ui', 'react-icons']],
                 'automatization',
                 'testing',
                 '*'
