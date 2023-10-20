@@ -15,13 +15,15 @@ If you are using Axios, you can add the token to all requests with an intercepto
 
 ```ts
 AXIOS_INSTANCE.interceptors.request.use(async (request) => {
-  if (lastSession === null || Date.now() > Date.parse(lastSession.expires)) {
-    const session = typeof window === "undefined" ? await getServerSession(authOptions) : await getSession();
-    lastSession = session;
+  if (request.url?.includes("/auth/")) {
+    return request;
   }
 
-  if (lastSession) {
-    const Authorization = `Bearer ${lastSession.apiToken}`;
+  const session =
+    typeof window === "undefined" ? await getServerSession(authOptions) : await getSession();
+
+  if (session) {
+    const Authorization = `Bearer ${session.apiToken}`;
 
     request.headers.Authorization = Authorization;
   } else {
