@@ -1,9 +1,39 @@
-import { Meta } from "@storybook/blocks";
+import { Meta } from '@storybook/blocks';
 
 <Meta title="project-setup/Code QA" />
 
-# .editorconfig
-
 # Eslint
 
+Eslint is the fastest way to spot errors on our code as we write.
+
+[Docs](https://eslint.org/docs/latest/use/)
+
+Example: [CCSA eslint configuration](https://github.com/Vizzuality/ccsa/blob/main/client/.eslintrc.json)
+
+Note: do not forget to tell Eslint what files/folders should be ignored, otherwise it might freeze trying to analyze codes from other parts like node_modules where you can find a lot of minified code.
+
+[Docs for eslintignore](https://eslint.org/docs/latest/use/configure/ignore)
+
+Example: [CCSA eslintignore](https://github.com/Vizzuality/ccsa/blob/main/client/.eslintignore)
+
+For a better DX, the [VS Code extension](https://github.com/Vizzuality/ccsa/blob/main/client/.eslintignore) is strongly recommended.
+
+Eslint Plugins
+[Docs for plugins](https://eslint.org/docs/latest/use/core-concepts#plugins)
+
+[List of Eslint plugins we usually use](https://github.com/Vizzuality/ccsa/blob/main/client/.eslintrc.json#L2-L7)
+
 # Prettier
+
+[Docs](https://prettier.io/docs/en/)
+
+[Example](https://github.com/Vizzuality/ccsa/blob/main/client/.prettierrc.js)
+
+Prettier plugins
+If you are using tailwindcss in your project, [their plugin](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) is strongly recommended:
+
+# Editorconfig
+
+Editorconfig is not specifically for QA but is a file that helps developers define and maintain consistent coding styles between different editors and IDEs.
+
+[Docs](https://editorconfig.org/#overview)
